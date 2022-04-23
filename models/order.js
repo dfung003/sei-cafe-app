@@ -36,6 +36,8 @@ orderSchema.virtual('orderId').get(function () {
     return this.id.slice(-6).toUpperCase();
 });
 
+// Fruit.getCart(req.params.id)
+
 orderSchema.statics.getCart = function (userId) {
     // 'this' is the Order model
     return this.findOneAndUpdate(
@@ -48,6 +50,9 @@ orderSchema.statics.getCart = function (userId) {
         { upsert: true, new: true }
     );
 };
+
+// const foundFruit = await Fruit.findById(req.params.id)
+// foundFruit.addItemToCart
 
 orderSchema.methods.addItemToCart = async function (itemId) {
     const cart = this;
